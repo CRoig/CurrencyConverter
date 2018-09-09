@@ -57,7 +57,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let currency = self.rates.remove(at: indexPath.row)
             self.rates.insert(currency, at: 0)
             
-            tableView.moveRow(at: indexPath, to: IndexPath(row: 0, section: 0))
+            let firstIndexPath = IndexPath(row: 0, section: 0)
+            let secondIndexPath = IndexPath(row: 1, section: 0)
+                
+            CATransaction.begin()
+            tableView.beginUpdates()
+            CATransaction.setCompletionBlock {
+                tableView.reloadRows(at: [firstIndexPath, secondIndexPath], with: UITableViewRowAnimation.none)
+            }
+            tableView.moveRow(at: indexPath, to: firstIndexPath)
+            tableView.endUpdates()
+            CATransaction.commit()
         }
     }
 }
