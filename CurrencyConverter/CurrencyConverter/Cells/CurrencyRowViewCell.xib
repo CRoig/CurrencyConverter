@@ -17,21 +17,24 @@
             <rect key="frame" x="0.0" y="0.0" width="365" height="93"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4hr-Dx-PiM">
-                    <rect key="frame" x="94.5" y="16" width="270.5" height="20.5"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4hr-Dx-PiM">
+                    <rect key="frame" x="108" y="16" width="249" height="34"/>
                     <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="textFieldDidChange" destination="iN0-l3-epB" eventType="editingChanged" id="f1o-YA-0Vg"/>
+                    </connections>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMS-aC-sCy">
-                    <rect key="frame" x="8" y="16" width="20.5" height="20.5"/>
+                    <rect key="frame" x="8" y="16" width="34" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="CMS-aC-sCy" secondAttribute="height" multiplier="1:1" id="P5s-Ol-P75"/>
                         <constraint firstAttribute="width" constant="64" id="jhE-28-cFv"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFg-KT-AkW">
-                    <rect key="frame" x="44.5" y="16" width="42" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFg-KT-AkW">
+                    <rect key="frame" x="58" y="16" width="42" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -44,7 +47,7 @@
                 <constraint firstItem="CMS-aC-sCy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Odo-qa-D8H"/>
                 <constraint firstItem="YFg-KT-AkW" firstAttribute="bottom" secondItem="CMS-aC-sCy" secondAttribute="bottom" id="Ovv-L8-Khf"/>
                 <constraint firstItem="4hr-Dx-PiM" firstAttribute="top" secondItem="CMS-aC-sCy" secondAttribute="top" id="TPb-Cl-dAb"/>
-                <constraint firstAttribute="trailing" secondItem="4hr-Dx-PiM" secondAttribute="trailing" id="UYB-zj-Rne"/>
+                <constraint firstAttribute="trailing" secondItem="4hr-Dx-PiM" secondAttribute="trailing" constant="8" id="UYB-zj-Rne"/>
                 <constraint firstItem="CMS-aC-sCy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="fBX-5W-iEy"/>
                 <constraint firstItem="4hr-Dx-PiM" firstAttribute="bottom" secondItem="CMS-aC-sCy" secondAttribute="bottom" id="lBr-UM-qHg"/>
                 <constraint firstAttribute="bottom" secondItem="CMS-aC-sCy" secondAttribute="bottom" constant="16" id="lGl-Yp-EvQ"/>

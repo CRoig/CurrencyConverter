@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CurrencyRowViewCellDelegate {
 
     private var rates = [CurrencyRow]()
     
@@ -45,8 +45,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyRowViewCell", for: indexPath) as! CurrencyRowViewCell
-        cell.configure(currency:rates[indexPath.row])
+        cell.configure(currency:rates[indexPath.row], baseAmount:self.baseAmount)
         cell.canEditAmount(indexPath.row == 0)
+        cell.delegate = self
         
         return cell
     }
@@ -68,6 +69,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             tableView.moveRow(at: indexPath, to: firstIndexPath)
             tableView.endUpdates()
             CATransaction.commit()
+        }
+    }
+    
+    //MARK: CurrencyRowViewCellDelegate
+    
+    func currencyRowViewCel(_ cell: CurrencyRowViewCell, didChange value: Double) {
+        self.baseAmount = value
+        
+        //We need to configure visible cells, since reloadData will resign first responder
+        for cell in (self.tableView?.visibleCells)! {
+            if let indexPath = self.tableView?.indexPath(for: cell), indexPath.row != 0 {
+                if let currencyRow = cell as? CurrencyRowViewCell {
+                    currencyRow.configure(currency: self.rates[indexPath.row], baseAmount: value)
+                }
+            }
         }
     }
 }
