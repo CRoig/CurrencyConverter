@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CurrencyRowViewCell" customModule="CurrencyConverter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="93"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4hr-Dx-PiM">
+                    <rect key="frame" x="94.5" y="16" width="270.5" height="20.5"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMS-aC-sCy">
+                    <rect key="frame" x="8" y="16" width="20.5" height="20.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="CMS-aC-sCy" secondAttribute="height" multiplier="1:1" id="P5s-Ol-P75"/>
+                        <constraint firstAttribute="width" constant="64" id="jhE-28-cFv"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFg-KT-AkW">
+                    <rect key="frame" x="44.5" y="16" width="42" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="YFg-KT-AkW" firstAttribute="top" secondItem="CMS-aC-sCy" secondAttribute="top" id="725-Mg-Dwc"/>
+                <constraint firstItem="4hr-Dx-PiM" firstAttribute="leading" secondItem="YFg-KT-AkW" secondAttribute="trailing" constant="8" id="ABi-ci-pTa"/>
+                <constraint firstItem="CMS-aC-sCy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Odo-qa-D8H"/>
+                <constraint firstItem="YFg-KT-AkW" firstAttribute="bottom" secondItem="CMS-aC-sCy" secondAttribute="bottom" id="Ovv-L8-Khf"/>
+                <constraint firstItem="4hr-Dx-PiM" firstAttribute="top" secondItem="CMS-aC-sCy" secondAttribute="top" id="TPb-Cl-dAb"/>
+                <constraint firstAttribute="trailing" secondItem="4hr-Dx-PiM" secondAttribute="trailing" id="UYB-zj-Rne"/>
+                <constraint firstItem="CMS-aC-sCy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="fBX-5W-iEy"/>
+                <constraint firstItem="4hr-Dx-PiM" firstAttribute="bottom" secondItem="CMS-aC-sCy" secondAttribute="bottom" id="lBr-UM-qHg"/>
+                <constraint firstAttribute="bottom" secondItem="CMS-aC-sCy" secondAttribute="bottom" constant="16" id="lGl-Yp-EvQ"/>
+                <constraint firstItem="YFg-KT-AkW" firstAttribute="leading" secondItem="CMS-aC-sCy" secondAttribute="trailing" constant="16" id="wji-bI-Fns"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="currencyIcon" destination="CMS-aC-sCy" id="bCu-DC-QVh"/>
+                <outlet property="currencyName" destination="YFg-KT-AkW" id="8LF-xg-eMD"/>
+            </connections>
+            <point key="canvasLocation" x="28.5" y="-233.5"/>
+        </view>
+    </objects>
+</document>
