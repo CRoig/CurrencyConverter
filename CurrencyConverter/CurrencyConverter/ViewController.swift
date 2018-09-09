@@ -12,17 +12,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     private var rates = [CurrencyRow]()
     
+    private var baseCurrency = "EUR"
+    private var baseAmount = 1.0
+    
     @IBOutlet private weak var tableView: UITableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView?.register(UINib(nibName: "CurrencyRowViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyRowViewCell")
-        CurrencyService().getCurrencyRates(base: "EUR", completion: { currencyUpdate in
+        CurrencyService().getCurrencyRates(base: baseCurrency, completion: { currencyUpdate in
             if (currencyUpdate == nil) {
                 //TODO: Add error reporting
             }else{
-                self.rates.append(CurrencyRow(name: currencyUpdate?.baseCurrency, rate: 1.0))
+                self.rates.append(CurrencyRow(name: currencyUpdate?.baseCurrency, rate: self.baseAmount))
                 let currencies = currencyUpdate?.rates.keys
                 for currency in currencies! {
                     self.rates.append(CurrencyRow(name: currency, rate: currencyUpdate?.rates[currency]?.doubleValue))
@@ -46,5 +48,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.configure(currency:rates[indexPath.row])
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            //TODO: Become first responder
+        }else{
+            tableView.moveRow(at: indexPath, to: IndexPath(row: 0, section: 0))
+        }
     }
 }
