@@ -10,11 +10,10 @@ import Foundation
 
 class CurrencyUpdate {
     public let baseCurrency: String
-    public let rates: [String: Any]
-    
+    public let rates: [String: NSNumber]
     
     init(payload: [String: Any]) {
         baseCurrency = payload["base"] as? String ?? String()
-        rates = payload["rates"] as? [String: Any] ?? [String: Any]()
+        rates = payload["rates"] as? [String: NSNumber] ?? [String: NSNumber]()
     }
 }

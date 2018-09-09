@@ -10,19 +10,21 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    private var baseCurrency = "EUR"
-    private var rates = [String: Any]()
+    private var rates = [CurrencyRow]()
     
     @IBOutlet private weak var tableView: UITableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CurrencyService().getCurrencyRates(base: baseCurrency, completion: { currencyUpdate in
+        CurrencyService().getCurrencyRates(base: "EUR", completion: { currencyUpdate in
             if (currencyUpdate == nil) {
                 //TODO: Add error reporting
             }else{
-                self.baseCurrency = currencyUpdate!.baseCurrency
-                self.rates = currencyUpdate!.rates
+                self.rates.append(CurrencyRow(name: currencyUpdate?.baseCurrency, rate: 1.0))
+                let currencies = currencyUpdate?.rates.keys
+                for currency in currencies! {
+                    self.rates.append(CurrencyRow(name: currency, rate: currencyUpdate?.rates[currency]?.doubleValue))
+                }
                 self.tableView?.reloadData()
             }
         })
@@ -34,19 +36,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Array(rates.keys).count + 1
+        return rates.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var title = ""
-        if indexPath.row == 0 {
-            title = baseCurrency
-        }else{
-            title = Array(rates.keys)[indexPath.row - 1]
-        }
-        
         let cell = UITableViewCell()
-        cell.textLabel?.text = title
+        cell.textLabel?.text = rates[indexPath.row].name
         
         return cell
     }

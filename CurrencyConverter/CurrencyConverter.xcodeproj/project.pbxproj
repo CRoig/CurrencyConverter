@@ -15,6 +15,7 @@
 		A7C3AC1E21450A7900007878 /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC1D21450A7900007878 /* CurrencyConverterTests.swift */; };
 		A7C3AC2A21450C3B00007878 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC2921450C3B00007878 /* CurrencyService.swift */; };
 		A7C3AC2D21450EE300007878 /* CurrencyUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC2C21450EE300007878 /* CurrencyUpdate.swift */; };
+		A7C3AC2F2145305500007878 /* CurrencyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC2E2145305500007878 /* CurrencyRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		A7C3AC1F21450A7900007878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7C3AC2921450C3B00007878 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		A7C3AC2C21450EE300007878 /* CurrencyUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUpdate.swift; sourceTree = "<group>"; };
+		A7C3AC2E2145305500007878 /* CurrencyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				A7C3AC2C21450EE300007878 /* CurrencyUpdate.swift */,
+				A7C3AC2E2145305500007878 /* CurrencyRow.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7C3AC0B21450A7700007878 /* ViewController.swift in Sources */,
+				A7C3AC2F2145305500007878 /* CurrencyRow.swift in Sources */,
 				A7C3AC2D21450EE300007878 /* CurrencyUpdate.swift in Sources */,
 				A7C3AC0921450A7700007878 /* AppDelegate.swift in Sources */,
 				A7C3AC2A21450C3B00007878 /* CurrencyService.swift in Sources */,
