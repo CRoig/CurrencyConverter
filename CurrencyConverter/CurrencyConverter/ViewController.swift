@@ -46,14 +46,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyRowViewCell", for: indexPath) as! CurrencyRowViewCell
         cell.configure(currency:rates[indexPath.row])
+        cell.canEditAmount(indexPath.row == 0)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            //TODO: Become first responder
-        }else{
+        self.view.endEditing(true)
+        if indexPath.row != 0 {
+            let currency = self.rates.remove(at: indexPath.row)
+            self.rates.insert(currency, at: 0)
+            
             tableView.moveRow(at: indexPath, to: IndexPath(row: 0, section: 0))
         }
     }

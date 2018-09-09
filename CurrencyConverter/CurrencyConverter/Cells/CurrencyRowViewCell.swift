@@ -12,12 +12,22 @@ class CurrencyRowViewCell: UITableViewCell {
     
     @IBOutlet var currencyIcon: UIImageView?
     @IBOutlet var currencyName: UILabel?
+    @IBOutlet var currencyAmount: UITextField?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectionStyle = UITableViewCellSelectionStyle.none
+    }
     
     func configure(currency: CurrencyRow) {
         let presenter = CurrencyRowViewCellPresenter(currency: currency)
         
         currencyIcon?.image = presenter.image()
         currencyName?.attributedText = presenter.text()
+    }
+    
+    func canEditAmount(_ can : Bool) {
+        self.currencyAmount?.isUserInteractionEnabled = can
     }
 }
 

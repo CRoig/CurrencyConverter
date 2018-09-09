@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="365" height="93"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4hr-Dx-PiM">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4hr-Dx-PiM">
                     <rect key="frame" x="94.5" y="16" width="270.5" height="20.5"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -55,6 +55,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="currencyAmount" destination="4hr-Dx-PiM" id="rgw-xM-af3"/>
                 <outlet property="currencyIcon" destination="CMS-aC-sCy" id="bCu-DC-QVh"/>
                 <outlet property="currencyName" destination="YFg-KT-AkW" id="8LF-xg-eMD"/>
             </connections>
