@@ -25,6 +25,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.requestCurrencyList()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.setupObservers()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.removeObservers()
+    }
+    
     //MARK: UITableViewDelegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -111,6 +119,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func stopTimer(){
         self.timer?.invalidate()
+    }
+    
+    //MARK: Observers
+    
+    func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.viewDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.viewWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    @objc func viewDidEnterBackground() {
+        self.stopTimer()
+    }
+    
+    @objc func viewWillEnterForeground() {
+        self.requestCurrencyUpdate()
+        self.startTimer()
     }
     
     //MARK: Update
