@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     private var baseCurrency = "EUR"
     
+    private var timer: Timer?
     @IBOutlet private weak var tableView: UITableView?
     
     override func viewDidLoad() {
@@ -21,21 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.tableView?.register(UINib(nibName: "CurrencyRowViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyRowViewCell")
         
-        CurrencyService().getCurrencyRates(base: baseCurrency, completion: { currencyUpdate in
-            if (currencyUpdate == nil) {
-                //TODO: Add error reporting
-            }else{
-                let initialBase = 1.0
-                self.rates.append(CurrencyRow(name: currencyUpdate?.baseCurrency, rate: initialBase, base: initialBase))
-                
-                //First load will display currencies sorted alphabetically
-                let currencies = currencyUpdate?.rates.keys.sorted{ $0 < $1 }
-                for currency in currencies! {
-                    self.rates.append(CurrencyRow(name: currency, rate: currencyUpdate?.rates[currency]?.doubleValue, base: initialBase))
-                }
-                self.tableView?.reloadData()
-            }
-        })
+        self.requestCurrencyList()
     }
 
     //MARK: UITableViewDelegate
@@ -83,6 +70,49 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.updateVisibleCells()
     }
     
+    //MARK: Fetch
+    
+    func requestCurrencyList() {
+        CurrencyService().getCurrencyRates(base: baseCurrency, completion: { currencyUpdate in
+            if (currencyUpdate == nil) {
+                //TODO: Add error reporting
+            }else{
+                let initialBase = 1.0
+                self.rates.append(CurrencyRow(name: currencyUpdate?.baseCurrency, rate: initialBase, base: initialBase))
+                
+                //First load will display currencies sorted alphabetically
+                let currencies = currencyUpdate?.rates.keys.sorted{ $0 < $1 }
+                for currency in currencies! {
+                    self.rates.append(CurrencyRow(name: currency, rate: currencyUpdate?.rates[currency]?.doubleValue, base: initialBase))
+                }
+                self.tableView?.reloadData()
+                
+                self.startTimer()
+            }
+        })
+    }
+    
+    @objc func requestCurrencyUpdate() {
+        if let baseCurrency = self.rates.first?.name {
+            CurrencyService().getCurrencyRates(base: baseCurrency, completion: { currencyUpdate in
+                if let rates = currencyUpdate?.rates {
+                    self.updateRates(rates:rates)
+                    self.updateVisibleCells()
+                }
+            })
+        }
+    }
+    
+    //MARK: Timer
+    
+    func startTimer(){
+        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.requestCurrencyUpdate), userInfo: nil, repeats: true)
+    }
+    
+    func stopTimer(){
+        self.timer?.invalidate()
+    }
+    
     //MARK: Update
     
     func updateBaseAmount(_ value: Double){
@@ -97,10 +127,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let oldRate = currency.rate
         currency.base = currency.base * oldRate
+        
         //Revert rate exchange to prevent glitches when reference currency is switched
         for row in self.rates {
             row.rate = row.rate / oldRate
             row.base = currency.base
+        }
+    }
+    
+    func updateRates(rates: [String: NSNumber]) {
+        for currency in self.rates {
+            if let update = rates[currency.name] {
+                currency.rate = update.doubleValue
+            }
         }
     }
     
