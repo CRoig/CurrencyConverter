@@ -63,6 +63,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let currency = self.rates.remove(at: indexPath.row)
             self.rates.insert(currency, at: 0)
             
+            let oldRate = currency.rate
+            currency.base = currency.base * oldRate
+            //Revert rate exchange to prevent glitches when reference currency is switched
+            for row in self.rates {
+                row.rate = row.rate / oldRate
+                row.base = currency.base
+            }
+            
             let firstIndexPath = IndexPath(row: 0, section: 0)
             let secondIndexPath = IndexPath(row: 1, section: 0)
                 
@@ -80,6 +88,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //MARK: CurrencyRowViewCellDelegate
     
     func currencyRowViewCel(_ cell: CurrencyRowViewCell, didChange value: Double) {
+        //Update base amount for all rows
         for row in self.rates {
             row.base = value
         }
