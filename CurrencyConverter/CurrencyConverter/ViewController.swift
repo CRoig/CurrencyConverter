@@ -60,16 +60,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.view.endEditing(true)
         if indexPath.row != 0 {
-            let currency = self.rates.remove(at: indexPath.row)
-            self.rates.insert(currency, at: 0)
-            
-            let oldRate = currency.rate
-            currency.base = currency.base * oldRate
-            //Revert rate exchange to prevent glitches when reference currency is switched
-            for row in self.rates {
-                row.rate = row.rate / oldRate
-                row.base = currency.base
-            }
+            self.updateBaseCurrency(at:indexPath)
             
             let firstIndexPath = IndexPath(row: 0, section: 0)
             let secondIndexPath = IndexPath(row: 1, section: 0)
@@ -88,14 +79,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //MARK: CurrencyRowViewCellDelegate
     
     func currencyRowViewCel(_ cell: CurrencyRowViewCell, didChange value: Double) {
-        //Update base amount for all rows
-        for row in self.rates {
-            row.base = value
-        }
+        self.updateBaseAmount(value)
         self.updateVisibleCells()
     }
     
-    //MARK: Refresh
+    //MARK: Update
+    
+    func updateBaseAmount(_ value: Double){
+        for row in self.rates {
+            row.base = value
+        }
+    }
+    
+    func updateBaseCurrency(at indexPath: IndexPath) {
+        let currency = self.rates.remove(at: indexPath.row)
+        self.rates.insert(currency, at: 0)
+        
+        let oldRate = currency.rate
+        currency.base = currency.base * oldRate
+        //Revert rate exchange to prevent glitches when reference currency is switched
+        for row in self.rates {
+            row.rate = row.rate / oldRate
+            row.base = currency.base
+        }
+    }
     
     func updateVisibleCells() {
         for cell in (self.tableView?.visibleCells)! {
