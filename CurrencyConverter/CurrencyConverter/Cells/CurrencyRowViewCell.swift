@@ -14,7 +14,7 @@ class CurrencyRowViewCell: UITableViewCell {
     @IBOutlet var currencyName: UILabel?
     @IBOutlet var currencyAmount: UITextField?
     
-    public var delegate: CurrencyRowViewCellDelegate?
+    var delegate: CurrencyRowViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +23,8 @@ class CurrencyRowViewCell: UITableViewCell {
         self.currencyAmount?.keyboardType = UIKeyboardType.decimalPad
     }
     
-    func configure(currency: CurrencyRow, baseAmount: Double) {
-        let presenter = CurrencyRowViewCellPresenter(currency: currency, baseAmount: baseAmount)
+    func configure(currency: CurrencyRow) {
+        let presenter = CurrencyRowViewCellPresenter(currency: currency)
         
         currencyIcon?.image = presenter.image()
         currencyName?.attributedText = presenter.text()
@@ -44,22 +44,20 @@ class CurrencyRowViewCell: UITableViewCell {
 
 class CurrencyRowViewCellPresenter {
     
-    private var currency: CurrencyRow?
-    private var baseAmount: Double
+    private var currency: CurrencyRow
     
-    init(currency: CurrencyRow, baseAmount: Double) {
+    init(currency: CurrencyRow) {
         self.currency = currency
-        self.baseAmount = baseAmount
     }
     
     func image() -> UIImage?{
-        return UIImage(named: currency!.name)
+        return UIImage(named: currency.name)
     }
     
     func amount() -> NSAttributedString {
-        let properties = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28)]
-        let amount = (currency?.rate)! * self.baseAmount
-        return NSAttributedString(string: String(format: "%.2f", amount), attributes: properties)
+        let color = currency.rate.isZero ? UIColor.black.withAlphaComponent(0.3) : UIColor.black
+        let properties = [NSAttributedStringKey.foregroundColor: color, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28)]
+        return NSAttributedString(string: String(format: "%.2f", currency.displayValue()), attributes: properties)
     }
     
     func text() -> NSAttributedString{
@@ -68,9 +66,9 @@ class CurrencyRowViewCellPresenter {
         let boldProperties = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)]
         let lightProperties = [NSAttributedStringKey.foregroundColor: UIColor.gray, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)]
         
-        let currencyID = NSAttributedString(string: (self.currency?.name)!, attributes: boldProperties)
+        let currencyID = NSAttributedString(string: self.currency.name, attributes: boldProperties)
         text.append(currencyID)
-        if let name = self.currencyName(id:(self.currency?.name)!) {
+        if let name = self.currencyName(id:self.currency.name) {
             let newLine = NSAttributedString(string: "\n", attributes: boldProperties)
             let currencyName = NSAttributedString(string: name, attributes: lightProperties)
             text.append(newLine)

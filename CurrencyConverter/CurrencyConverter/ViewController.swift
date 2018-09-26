@@ -13,21 +13,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     private var rates = [CurrencyRow]()
     
     private var baseCurrency = "EUR"
-    private var baseAmount = 1.0
     
     @IBOutlet private weak var tableView: UITableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView?.register(UINib(nibName: "CurrencyRowViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyRowViewCell")
+        
         CurrencyService().getCurrencyRates(base: baseCurrency, completion: { currencyUpdate in
             if (currencyUpdate == nil) {
                 //TODO: Add error reporting
             }else{
-                self.rates.append(CurrencyRow(name: currencyUpdate?.baseCurrency, rate: self.baseAmount))
-                let currencies = currencyUpdate?.rates.keys
+                let initialBase = 1.0
+                self.rates.append(CurrencyRow(name: currencyUpdate?.baseCurrency, rate: initialBase, base: initialBase))
+                
+                //First load will display currencies sorted alphabetically
+                let currencies = currencyUpdate?.rates.keys.sorted{ $0 < $1 }
                 for currency in currencies! {
-                    self.rates.append(CurrencyRow(name: currency, rate: currencyUpdate?.rates[currency]?.doubleValue))
+                    self.rates.append(CurrencyRow(name: currency, rate: currencyUpdate?.rates[currency]?.doubleValue, base: initialBase))
                 }
                 self.tableView?.reloadData()
             }
@@ -35,6 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     //MARK: UITableViewDelegate
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -45,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyRowViewCell", for: indexPath) as! CurrencyRowViewCell
-        cell.configure(currency:rates[indexPath.row], baseAmount:self.baseAmount)
+        cell.configure(currency:rates[indexPath.row])
         cell.canEditAmount(indexPath.row == 0)
         cell.delegate = self
         
@@ -75,13 +80,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //MARK: CurrencyRowViewCellDelegate
     
     func currencyRowViewCel(_ cell: CurrencyRowViewCell, didChange value: Double) {
-        self.baseAmount = value
-        
-        //We need to configure visible cells, since reloadData will resign first responder
+        for row in self.rates {
+            row.base = value
+        }
+        self.updateVisibleCells()
+    }
+    
+    //MARK: Refresh
+    
+    func updateVisibleCells() {
         for cell in (self.tableView?.visibleCells)! {
+            //First row amount never changes due to currency update (from server) or base amount update
             if let indexPath = self.tableView?.indexPath(for: cell), indexPath.row != 0 {
                 if let currencyRow = cell as? CurrencyRowViewCell {
-                    currencyRow.configure(currency: self.rates[indexPath.row], baseAmount: value)
+                    currencyRow.configure(currency: self.rates[indexPath.row])
                 }
             }
         }
