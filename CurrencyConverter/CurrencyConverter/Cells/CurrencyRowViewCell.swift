@@ -8,12 +8,13 @@
 
 import UIKit
 
-class CurrencyRowViewCell: UITableViewCell {
+class CurrencyRowViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet var currencyIcon: UIImageView?
     @IBOutlet var currencyName: UILabel?
     @IBOutlet var currencyAmount: UITextField?
     
+    var currency: CurrencyRow?
     var delegate: CurrencyRowViewCellDelegate?
     
     override func awakeFromNib() {
@@ -21,22 +22,33 @@ class CurrencyRowViewCell: UITableViewCell {
         
         self.selectionStyle = UITableViewCellSelectionStyle.none
         self.currencyAmount?.keyboardType = UIKeyboardType.decimalPad
+        self.currencyAmount?.delegate = self
     }
     
     func configure(currency: CurrencyRow) {
+        self.currency = currency
         let presenter = CurrencyRowViewCellPresenter(currency: currency)
         
-        currencyIcon?.image = presenter.image()
-        currencyName?.attributedText = presenter.text()
-        currencyAmount?.attributedText = presenter.amount()
+        self.currencyIcon?.image = presenter.image()
+        self.currencyName?.attributedText = presenter.text()
+        self.currencyAmount?.attributedText = presenter.amount()
     }
     
     func canEditAmount(_ can : Bool) {
         self.currencyAmount?.isUserInteractionEnabled = can
     }
     
-    @IBAction func textFieldDidChange() {
+    //MARK: UITextFieldDelegate
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if let amount = currencyAmount?.text {
+            self.currency?.base = (amount as NSString).doubleValue
+            self.configure(currency: self.currency!)
+        }
+    }
+    
+    @IBAction func textFieldDidChange() {
+        if let amount = self.currencyAmount?.text {
             self.delegate?.currencyRowViewCel(self, didChange: (amount as NSString).doubleValue)
         }
     }
