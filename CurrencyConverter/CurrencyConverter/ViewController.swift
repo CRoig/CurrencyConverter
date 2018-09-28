@@ -104,6 +104,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func requestCurrencyUpdate() {
         if let baseCurrency = self.rates.first?.name {
             CurrencyService().getCurrencyRates(base: baseCurrency, completion: { currencyUpdate in
+                guard currencyUpdate?.baseCurrency == self.rates.first?.name  else {
+                    return
+                }
                 if let rates = currencyUpdate?.rates {
                     self.updateRates(rates:rates)
                     self.updateVisibleCells()
