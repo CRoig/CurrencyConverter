@@ -83,11 +83,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func requestCurrencyList() {
         CurrencyService().getCurrencyRates(base: baseCurrency, completion: { currencyUpdate in
             if (currencyUpdate == nil) {
-                //TODO: Add error reporting
+                self.presentCurrencyListFailure()
             }else{
                 self.initialSetup(currencyUpdate!)
             }
         })
+    }
+    
+    func presentCurrencyListFailure() {
+        let alertController = UIAlertController(title: "Network failure", message: "There was a problem requesting currencies. Check your connectiviy and tap Retry", preferredStyle: .alert)
+        
+        let retryAction = UIAlertAction(title: "Retry", style: .default) { (action:UIAlertAction) in
+            self.requestCurrencyList()
+        }
+        alertController.addAction(retryAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @objc func requestCurrencyUpdate() {
