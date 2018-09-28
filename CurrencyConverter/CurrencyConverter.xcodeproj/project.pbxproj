@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		3119287DE2F845C49185153E /* Pods_CurrencyConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B47B56E3FCD1D7395334C08 /* Pods_CurrencyConverter.framework */; };
-		A78B997F215E600300168643 /* CurrencyServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B997E215E600300168643 /* CurrencyServiceTests.swift */; };
+		A78B997F215E600300168643 /* ViewControllerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B997E215E600300168643 /* ViewControllerServiceTests.swift */; };
 		A7C3AC0921450A7700007878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC0821450A7700007878 /* AppDelegate.swift */; };
 		A7C3AC0B21450A7700007878 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC0A21450A7700007878 /* ViewController.swift */; };
 		A7C3AC0E21450A7700007878 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C3AC0C21450A7700007878 /* Main.storyboard */; };
 		A7C3AC1021450A7800007878 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C3AC0F21450A7800007878 /* Assets.xcassets */; };
 		A7C3AC1321450A7800007878 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C3AC1121450A7800007878 /* LaunchScreen.storyboard */; };
-		A7C3AC1E21450A7900007878 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC1D21450A7900007878 /* ViewControllerTests.swift */; };
+		A7C3AC1E21450A7900007878 /* ViewControllerDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC1D21450A7900007878 /* ViewControllerDataTests.swift */; };
 		A7C3AC2A21450C3B00007878 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC2921450C3B00007878 /* CurrencyService.swift */; };
 		A7C3AC2D21450EE300007878 /* CurrencyUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC2C21450EE300007878 /* CurrencyUpdate.swift */; };
 		A7C3AC2F2145305500007878 /* CurrencyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC2E2145305500007878 /* CurrencyRow.swift */; };
@@ -40,7 +40,7 @@
 		0BB999D8B09FDDFACCAE7064 /* Pods-CurrencyConverter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyConverter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CurrencyConverter/Pods-CurrencyConverter.debug.xcconfig"; sourceTree = "<group>"; };
 		8B85E7088BC1599E5BCF777A /* Pods-CurrencyConverterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyConverterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CurrencyConverterTests/Pods-CurrencyConverterTests.release.xcconfig"; sourceTree = "<group>"; };
 		9B47B56E3FCD1D7395334C08 /* Pods_CurrencyConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A78B997E215E600300168643 /* CurrencyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyServiceTests.swift; sourceTree = "<group>"; };
+		A78B997E215E600300168643 /* ViewControllerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerServiceTests.swift; sourceTree = "<group>"; };
 		A7C3AC0521450A7700007878 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C3AC0821450A7700007878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7C3AC0A21450A7700007878 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		A7C3AC1221450A7800007878 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7C3AC1421450A7800007878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7C3AC1921450A7900007878 /* CurrencyConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7C3AC1D21450A7900007878 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
+		A7C3AC1D21450A7900007878 /* ViewControllerDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDataTests.swift; sourceTree = "<group>"; };
 		A7C3AC1F21450A7900007878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7C3AC2921450C3B00007878 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		A7C3AC2C21450EE300007878 /* CurrencyUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUpdate.swift; sourceTree = "<group>"; };
@@ -122,8 +122,8 @@
 		A7C3AC1C21450A7900007878 /* CurrencyConverterTests */ = {
 			isa = PBXGroup;
 			children = (
-				A7C3AC1D21450A7900007878 /* ViewControllerTests.swift */,
-				A78B997E215E600300168643 /* CurrencyServiceTests.swift */,
+				A7C3AC1D21450A7900007878 /* ViewControllerDataTests.swift */,
+				A78B997E215E600300168643 /* ViewControllerServiceTests.swift */,
 				A7C3AC1F21450A7900007878 /* Info.plist */,
 			);
 			path = CurrencyConverterTests;
@@ -361,8 +361,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A78B997F215E600300168643 /* CurrencyServiceTests.swift in Sources */,
-				A7C3AC1E21450A7900007878 /* ViewControllerTests.swift in Sources */,
+				A78B997F215E600300168643 /* ViewControllerServiceTests.swift in Sources */,
+				A7C3AC1E21450A7900007878 /* ViewControllerDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

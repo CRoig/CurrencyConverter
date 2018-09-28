@@ -20,6 +20,14 @@ class ViewControllerTests: XCTestCase {
         ]
     }
     
+    func testDisplayValue() {
+        let rate = 0.2341
+        let base = 1.0
+        let row = CurrencyRow(name: "GHI", rate: rate, base: base)
+        
+        XCTAssertEqual(row.displayValue(), rate * base)
+    }
+    
     func testBaseUpdate() {
         let newBase = 3.0
         viewController.updateBaseAmount(newBase)

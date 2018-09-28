@@ -85,17 +85,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if (currencyUpdate == nil) {
                 //TODO: Add error reporting
             }else{
-                let initialBase = 1.0
-                self.rates.append(CurrencyRow(name: currencyUpdate?.baseCurrency, rate: initialBase, base: initialBase))
-                
-                //First load will display currencies sorted alphabetically
-                let currencies = currencyUpdate?.rates.keys.sorted{ $0 < $1 }
-                for currency in currencies! {
-                    self.rates.append(CurrencyRow(name: currency, rate: currencyUpdate?.rates[currency]?.doubleValue, base: initialBase))
-                }
-                self.tableView?.reloadData()
-                
-                self.startTimer()
+                self.initialSetup(currencyUpdate!)
             }
         })
     }
@@ -143,6 +133,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     //MARK: Update
+    
+    func initialSetup(_ currencyUpdate : CurrencyUpdate) {
+        let initialBase = 1.0
+        
+        self.rates.removeAll()
+        self.rates.append(CurrencyRow(name: currencyUpdate.baseCurrency, rate: initialBase, base: initialBase))
+        
+        //First load will display currencies sorted alphabetically
+        let currencies = currencyUpdate.rates.keys.sorted{ $0 < $1 }
+        for currency in currencies {
+            self.rates.append(CurrencyRow(name: currency, rate: currencyUpdate.rates[currency]?.doubleValue, base: initialBase))
+        }
+        self.tableView?.reloadData()
+        
+        self.startTimer()
+    }
     
     func updateBaseAmount(_ value: Double){
         for row in self.rates {
