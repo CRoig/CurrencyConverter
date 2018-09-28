@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CurrencyRowViewCellDelegate {
 
-    private var rates = [CurrencyRow]()
+    var rates = [CurrencyRow]()
     
     private var baseCurrency = "EUR"
     

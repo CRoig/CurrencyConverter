@@ -12,7 +12,7 @@
 		A7C3AC0E21450A7700007878 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C3AC0C21450A7700007878 /* Main.storyboard */; };
 		A7C3AC1021450A7800007878 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C3AC0F21450A7800007878 /* Assets.xcassets */; };
 		A7C3AC1321450A7800007878 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C3AC1121450A7800007878 /* LaunchScreen.storyboard */; };
-		A7C3AC1E21450A7900007878 /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC1D21450A7900007878 /* CurrencyConverterTests.swift */; };
+		A7C3AC1E21450A7900007878 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC1D21450A7900007878 /* ViewControllerTests.swift */; };
 		A7C3AC2A21450C3B00007878 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC2921450C3B00007878 /* CurrencyService.swift */; };
 		A7C3AC2D21450EE300007878 /* CurrencyUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC2C21450EE300007878 /* CurrencyUpdate.swift */; };
 		A7C3AC2F2145305500007878 /* CurrencyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3AC2E2145305500007878 /* CurrencyRow.swift */; };
@@ -41,7 +41,7 @@
 		A7C3AC1221450A7800007878 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7C3AC1421450A7800007878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7C3AC1921450A7900007878 /* CurrencyConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7C3AC1D21450A7900007878 /* CurrencyConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterTests.swift; sourceTree = "<group>"; };
+		A7C3AC1D21450A7900007878 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		A7C3AC1F21450A7900007878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7C3AC2921450C3B00007878 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		A7C3AC2C21450EE300007878 /* CurrencyUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUpdate.swift; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		A7C3AC1C21450A7900007878 /* CurrencyConverterTests */ = {
 			isa = PBXGroup;
 			children = (
-				A7C3AC1D21450A7900007878 /* CurrencyConverterTests.swift */,
+				A7C3AC1D21450A7900007878 /* ViewControllerTests.swift */,
 				A7C3AC1F21450A7900007878 /* Info.plist */,
 			);
 			path = CurrencyConverterTests;
@@ -266,7 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7C3AC1E21450A7900007878 /* CurrencyConverterTests.swift in Sources */,
+				A7C3AC1E21450A7900007878 /* ViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
