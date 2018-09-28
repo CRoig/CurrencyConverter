@@ -9,8 +9,9 @@
 import Foundation
 
 class CurrencyUpdate {
-    public let baseCurrency: String
-    public let rates: [String: NSNumber]
+    
+    let baseCurrency: String
+    let rates: [String: NSNumber]
     
     init(payload: [String: Any]) {
         baseCurrency = payload["base"] as? String ?? String()

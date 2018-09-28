@@ -12,16 +12,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var rates = [CurrencyRow]()
     
-    private var baseCurrency = "EUR"
+    private var initialBaseCurrency = "EUR"
     
     private var timer: Timer?
     @IBOutlet private weak var tableView: UITableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView?.register(UINib(nibName: "CurrencyRowViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyRowViewCell")
-        
         self.requestCurrencyList()
     }
 
@@ -81,7 +79,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //MARK: Fetch
     
     func requestCurrencyList() {
-        CurrencyService().getCurrencyRates(base: baseCurrency, completion: { currencyUpdate in
+        CurrencyService().getCurrencyRates(base: initialBaseCurrency, completion: { currencyUpdate in
             if (currencyUpdate == nil) {
                 self.presentCurrencyListFailure()
             }else{
