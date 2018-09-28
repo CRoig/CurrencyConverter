@@ -1,0 +1,13 @@
+platform :ios, '11.4'
+
+target 'CurrencyConverter' do
+  use_frameworks!
+
+  # Pods for CurrencyConverter
+
+  target 'CurrencyConverterTests' do
+    inherit! :search_paths
+    pod 'OHHTTPStubs/Swift'
+  end
+
+end
